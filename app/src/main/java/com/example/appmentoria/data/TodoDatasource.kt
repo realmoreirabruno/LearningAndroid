@@ -15,7 +15,8 @@ class TodoDatasource {
             ToDo(R.string.todo7, "A","B", true),
             ToDo(R.string.todo8, "A","B", true),
             ToDo(R.string.todo9, "A","B", true),
-            ToDo(R.string.todo10, "A","B", true)
+            ToDo(R.string.todo10, "A","B", true),
+            ToDo(R.string.todo11, "A","B", true)
         )
     }
 }
