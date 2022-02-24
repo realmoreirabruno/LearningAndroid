@@ -2,6 +2,9 @@ package com.example.appmentoria
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.RecyclerView
+import com.example.appmentoria.adapter.ItemAdapter
+import com.example.appmentoria.data.TodoDatasource
 import com.example.appmentoria.model.ToDo
 
 class MainActivity : AppCompatActivity() {
@@ -9,20 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val todos: MutableList<ToDo> = mutableListOf();
+        val myDataset = TodoDatasource().loadTodos()
 
-        todos.addAll(
-            listOf(
-                ToDo("Test", "Description"),
-                ToDo("Test2", "Description"),
-                ToDo("Test3", "Description"),
-                ToDo("Test4", "Description"),
-                ToDo("Test5", "Description"),
-                ToDo("Test6", "Description", true),
-                ToDo("Test7", "Description"),
-                ToDo("Test8", "Description"),
-                ToDo("Test9", "Description")
-            )
-        )
+        val recyclerView = findViewById<RecyclerView>(R.id.tasks_recyclerview)
+
+        recyclerView.adapter = ItemAdapter(this, myDataset)
+
+        recyclerView.setHasFixedSize(true)
     }
 }

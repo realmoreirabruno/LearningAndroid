@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AppMentoria</string>
+    <string name="todo1">Learn RecyclerView</string>
+    <string name="todo2">Understand Binding</string>
+    <string name="todo3">Pray for Jetpack.</string>
+    <string name="todo4">Save xmls</string>
+    <string name="todo5">Praise for Room</string>
+    <string name="todo6">And you will never fall into the temptation of having an iphone</string>
+    <string name="todo7">But free us from Macs, amen</string>
+    <string name="todo8">Have I ever tried iOS? I dont remember it</string>
+    <string name="todo9">Android >>>> iOS</string>
+    <string name="todo10">iPhone13? Ive already have a Moto G6, I pass</string>
 </resources>

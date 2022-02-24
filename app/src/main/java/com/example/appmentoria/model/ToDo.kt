@@ -3,6 +3,7 @@ package com.example.appmentoria.model
 import java.text.DateFormat
 
 data class ToDo (
+    val stringResourceId: Int,
     val name: String,
     val description: String,
     val done: Boolean = false,
