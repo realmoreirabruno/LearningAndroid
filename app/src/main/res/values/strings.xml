@@ -1,18 +1,16 @@
-<resources>
-    <string name="app_name">AppMentoria</string>
-<!--    TODO: Eliminar essas strings-->
-    <string name="todo1">Learn RecyclerView</string>
-    <string name="todo2">Understand Binding</string>
-    <string name="todo3">Pray for Jetpack.</string>
-    <string name="todo4">Save xmls</string>
-    <string name="todo5">Praise for Room</string>
-    <string name="todo6">And you will never fall into the temptation of having an iphone</string>
-    <string name="todo7">But free   us from Macs, amen</string>
-    <string name="todo8">Have I ever tried iOS? I dont remember it</string>
-    <string name="todo9">Android >>>> iOS</string>
-    <string name="todo10">iPhone13? Ive already have a Moto G6, I pass</string>
-    <string name="todo11">Stand with Ukraine</string>
-<!--    Até essa acima-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name" translatable="false">AppMentoria</string>
     <string name="date_description">Date Created:</string>
-<!--    TODO: Adicionar outras strings fixas do código como resource-->
+    <string name="empty_message"> <xliff:g id="epa"> EPAAAAAA! </xliff:g>
+                                        Empty! Add your first task!</string>
+<!--    <drawable name="icon">@drawable/icon_br</drawable> //default US-->
+<!--    pensei na ideia de ter uma bandeira da lingua no fab para as linguas suportadas-->
+<!--adicionei um package de drawable-pt-rBR porém não consegui ve-lo nos arquivos e bugou-->
+    <!--    adicionei a string empty e retirei as strings desnecessarias -->
+<!--    adicionei placeholder(xliff) pra não traduzir parte da string-->
+    <string name="hint_word">Task Name</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Task not saved because it is empty.</string>
+    <string name="add_word">Add task</string>
+
 </resources>

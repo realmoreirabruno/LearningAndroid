@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="date_description">Data de Criação:</string>
-<!--    TODO: Traduzir as strings do outro arquivo aqui-->
+    <string name="hint_word">Nome da Tarefa</string>
+    <string name="button_save">Salvar</string>
+    <string name="empty_message">Vazio! Adicione sua primeira tarefa</string>
+    <string name="empty_not_saved">A tarefa não foi salva pois está vazia.</string>
+    <string name="add_word">Adicionar Tarefa</string>
+    <!--  traduzidas :) -->
 </resources>
