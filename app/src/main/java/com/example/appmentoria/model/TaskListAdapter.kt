@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmentoria.R
 
-class TaskListAdapter : ListAdapter<ToDo, TaskListAdapter.TaskViewHolder>(TasksComparator()) {
+class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(TasksComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder.create(parent)
@@ -36,12 +36,12 @@ class TaskListAdapter : ListAdapter<ToDo, TaskListAdapter.TaskViewHolder>(TasksC
         }
     }
 
-    class TasksComparator : DiffUtil.ItemCallback<ToDo>() {
-        override fun areItemsTheSame(oldItem: ToDo, newItem: ToDo): Boolean {
+    class TasksComparator : DiffUtil.ItemCallback<Task>() {
+        override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: ToDo, newItem: ToDo): Boolean {
+        override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
             return oldItem.name == newItem.name
         }
     }

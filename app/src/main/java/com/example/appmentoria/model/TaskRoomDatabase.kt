@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(ToDo::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Task::class), version = 1, exportSchema = false)
 public abstract class TaskRoomDatabase : RoomDatabase() {
 
     abstract fun taskDao(): TaskDao
@@ -31,9 +31,9 @@ public abstract class TaskRoomDatabase : RoomDatabase() {
             taskDao.deleteAll()
 
             // Add sample words.
-            var name = ToDo("Hello", true)
+            var name = Task("Hello", true)
             taskDao.insert(name)
-            name = ToDo("Hi there!")
+            name = Task("Hi there!")
             taskDao.insert(name)
         }
     }
@@ -44,9 +44,7 @@ public abstract class TaskRoomDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: TaskRoomDatabase? = null
 
-        fun getDatabase(context: Context,
-                        scope: CoroutineScope
-        ): TaskRoomDatabase {
+        fun getDatabase(context: Context): TaskRoomDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {

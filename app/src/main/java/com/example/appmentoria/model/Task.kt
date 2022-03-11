@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.text.DateFormat
 
 @Entity(tableName = "task_table")
-data class ToDo (
+data class Task (
     @ColumnInfo(name = "name") val name: String,
     //adicionar a description depois.
     //val description: String,

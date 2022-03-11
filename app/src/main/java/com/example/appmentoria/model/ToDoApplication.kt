@@ -1,15 +1,18 @@
 package com.example.appmentoria.model
 
 import android.app.Application
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
+import android.content.Intent
+import com.example.appmentoria.MainActivity
 
 class ToDoApplication : Application() {
 
-    val applicationScope = CoroutineScope(SupervisorJob())
+    override fun onCreate() {
+        super.onCreate()
+            val mainActivity = Intent(this, MainActivity::class.java)
+        mainActivity.apply {
+            setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+        startActivity(mainActivity)
+    }
 
-    // Using by lazy so the database and the repository are only created when they're needed
-    // rather than when the application starts
-    val database by lazy { TaskRoomDatabase.getDatabase(this) }
-    val repository by lazy { TaskRepository(database.taskDao()) }
 }

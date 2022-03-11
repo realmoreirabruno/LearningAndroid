@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmentoria.model.*
@@ -15,14 +16,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class MainActivity : AppCompatActivity() {
 
     private val newTaskActivityRequestCode = 1
-    private val taskViewModel: TaskViewModel by viewModels {
-        TaskViewModelFactory((application as ToDoApplication).repository)
-    }
+    private var taskViewModel: TaskViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        taskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         val recyclerView = findViewById<RecyclerView>(R.id.tasks_recyclerview)
         val adapter = TaskListAdapter()
 
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         // Add an observer on the LiveData returned by getAlphabetizedWords.
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
-        taskViewModel.allWords.observe(this) { words ->
+        taskViewModel?.allTasks?.observe(this) { words ->
             // Update the cached copy of the words in the adapter.
             words.let { adapter.submitList(it) }
         }
@@ -55,8 +55,8 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == newTaskActivityRequestCode && resultCode == Activity.RESULT_OK) {
             intentData?.getStringExtra(NewTaskActivity.EXTRA_REPLY)?.let { reply ->
-                val name = ToDo(reply)
-                taskViewModel.insert(name)
+                val name = Task(reply)
+                taskViewModel?.insert(name)
             }
         } else {
             Toast.makeText(
