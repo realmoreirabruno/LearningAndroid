@@ -5,9 +5,9 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.Flow
 
-class TaskRepository (application: Application) {
+class TaskRepository (private val taskDao: TaskDao) {
 
-    val taskDao: TaskDao = TaskRoomDatabase.getDatabase(application).taskDao()
+//    private val taskDao: TaskDao = TaskRoomDatabase.getDatabase(application).taskDao()
 
     // Room executes all queries on a separate thread.
     // Observed Flow will notify the observer when the data has changed.
@@ -18,7 +18,7 @@ class TaskRepository (application: Application) {
     // off the main thread.
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(name: Task) {
-        taskDao.insert(name)
+    suspend fun insert(task: Task) {
+        taskDao.insert(task)
     }
 }

@@ -3,13 +3,14 @@ package com.example.appmentoria.model
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmentoria.R
 
-class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(TasksComparator()) {
+class TaskListAdapter () : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(TasksComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder.create(parent)
@@ -21,7 +22,7 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(TasksC
     }
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val taskItemView: TextView = itemView.findViewById(R.id.text)
+        private val taskItemView: TextView = itemView.findViewById(R.id.task_text)
 
         fun bind(text: String?) {
             taskItemView.text = text
@@ -30,7 +31,7 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(TasksC
         companion object {
             fun create(parent: ViewGroup): TaskViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.tasks_activity, parent, false)
+                    .inflate(R.layout.activity_main, parent, false)
                 return TaskViewHolder(view)
             }
         }

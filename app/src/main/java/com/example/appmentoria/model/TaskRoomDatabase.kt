@@ -8,8 +8,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Task::class), version = 1, exportSchema = false)
-public abstract class TaskRoomDatabase : RoomDatabase() {
+@Database(entities = [Task::class], version = 1, exportSchema = false)
+abstract class TaskRoomDatabase : RoomDatabase() {
 
     abstract fun taskDao(): TaskDao
 
@@ -31,10 +31,10 @@ public abstract class TaskRoomDatabase : RoomDatabase() {
             taskDao.deleteAll()
 
             // Add sample words.
-            var name = Task("Hello", true)
-            taskDao.insert(name)
-            name = Task("Hi there!")
-            taskDao.insert(name)
+            var task = Task("Hello", "",true)
+            taskDao.insert(task)
+            task = Task("Hi there!", "")
+            taskDao.insert(task)
         }
     }
 
@@ -44,15 +44,17 @@ public abstract class TaskRoomDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: TaskRoomDatabase? = null
 
-        fun getDatabase(context: Context): TaskRoomDatabase {
+        fun getDatabase(context: Context,
+                        scope: CoroutineScope): TaskRoomDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TaskRoomDatabase::class.java,
-                    "task_database"
-                ).build()
+                    "task_database")
+                    .addCallback(TaskDatabaseCallback(scope))
+                    .build()
                 INSTANCE = instance
                 // return instance
                 instance
